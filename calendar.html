@@ -4,7 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>日历页面</title>
-    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="css/styles.css">
+    <link rel="stylesheet" href="css/calendar.css">
 </head>
 <body>
     <header>
@@ -16,27 +17,19 @@
         </nav>
     </header>
 
-    <section id="calendar">
-        <h2>日历</h2>
-        <div id="calendar-container"></div>
-        <div id="ride-form-container">
-            <h3>创建骑行记录</h3>
-            <form id="ride-form">
-                <label for="ride-date">日期:</label>
-                <input type="date" id="ride-date" required>
-                <label for="ride-time">骑行时间 (分钟):</label>
-                <input type="number" id="ride-time" min="0" required>
-                <label for="ride-distance">骑行距离 (公里):</label>
-                <input type="number" id="ride-distance" min="0" step="0.1" required>
-                <input type="submit" value="添加记录">
-            </form>
+    <section id="calendar" class="two-columns">
+        <div class="left-column">
+            <div id="time-card"></div>
+            <div id="calendar-container"></div>
         </div>
-        <div id="ride-records">
-            <h3>骑行记录</h3>
-            <ul id="records-list"></ul>
+        <div class="right-column">
+            <div id="chicken-soup-card"></div>
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
+    <script src="js/calendar.js"></script>
+    <script src="js/time.js"></script>
+    <script src="js/chicken_soup.js"></script>
 </body>
 </html>
