@@ -5,29 +5,52 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>个人主页</title>
     <link rel="stylesheet" href="css/styles.css">
-    <link rel="stylesheet" href="css/calendar.css">
+    <!-- 引入 Font Awesome 图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 <body>
     <header>
         <nav>
             <ul>
                 <li><a href="index.html">首页</a></li>
-                <li><a href="calendar.html">日历</a></li>
+                <li><a href="resume.html">简历</a></li>
             </ul>
         </nav>
     </header>
 
-    <section id="home">
-        <h1>欢迎来到我的个人网站</h1>
-        <p>这里是我的线上空间，分享我的故事和作品。</p>
+    <section id="calendar" class="two-columns">
+        <div class="left-column">
+            <div id="card">
+                <div id="time-card" class="card"></div>
+            </div>
+            <div id="card">
+                <div id="calendar-container" class="card"></div>
+            </div>
+        </div>
+        <div class="right-column">
+            <div id="card">
+                <div id="chicken-soup-card" class="card"></div>
+            </div>
+            <div id="card">
+                <div id="about" class="card">
+                    <h1>欢迎来到我的个人网站</h1>
+                    <p>这里是我的线上空间，分享我的故事和作品。</p>
+                    <h2>关于我</h2>
+                    <p>我是一名充满激情的开发者，热衷于探索新技术和解决复杂问题。</p>
+                </div>
+            </div>
+        </div>
     </section>
 
-    <section id="about">
-        <h2>关于我</h2>
-        <p>我是一名充满激情的开发者，热衷于探索新技术和解决复杂问题。</p>
-    </section>
+    <!-- 将模式切换按钮移到这里 -->
+    <button id="dark-mode-toggle" class="floating-toggle">
+        <i class="fas fa-sun"></i>
+        <i class="fas fa-moon"></i>
+    </button>
 
     <script src="js/script.js"></script>
     <script src="js/calendar.js"></script>
+    <script src="js/time.js"></script>
+    <script src="js/chicken_soup.js"></script>
 </body>
 </html>
