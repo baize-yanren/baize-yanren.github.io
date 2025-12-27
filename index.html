@@ -1,56 +1,311 @@
-<!DOCTYPE html>
-<html lang="zh-CN">
-<head>
+<html lang="zh-CN"><head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>个人主页</title>
-    <link rel="stylesheet" href="css/styles.css">
-    <!-- 引入 Font Awesome 图标库 -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-</head>
-<body>
-    <header>
-        <nav>
-            <ul>
-                <li><a href="index.html">首页</a></li>
-                <li><a href="resume.html">简历</a></li>
-            </ul>
-        </nav>
-    </header>
+    <title>Personal Website</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/lucide@0.544.0/dist/umd/lucide.min.js"></script>
 
-    <section id="calendar" class="two-columns">
-        <div class="left-column">
-            <div id="card">
-                <div id="time-card" class="card"></div>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+        body {
+            font-family: 'Inter', sans-serif;
+            overflow-x: hidden;
+            background-color: #121212;
+            color: #e0e0e0;
+        }
+        #game-container {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            z-index: -1;
+        }
+        .nav-link {
+            position: relative;
+            transition: color 0.3s;
+        }
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -4px;
+            left: 0;
+            background-color: #6366f1;
+            transition: width 0.3s;
+        }
+        .nav-link:hover::after, .nav-link.active::after {
+            width: 100%;
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-100">
+    <!-- Navigation -->
+    <nav class="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md z-50 shadow-sm border-b border-gray-700">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <a href="index.html" class="text-2xl font-bold text-indigo-600">Personal.</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="index.html" class="nav-link active font-medium">Home</a>
+                <a href="resume.html" class="nav-link font-medium">Resume</a>
+                <a href="notes.html" class="nav-link font-medium">Notes</a>
             </div>
-            <div id="card">
-                <div id="calendar-container" class="card"></div>
+            <button class="md:hidden" id="mobile-menu-button">
+                <i data-lucide="menu"></i>
+            </button>
+        </div>
+        <!-- Mobile Menu -->
+        <div class="md:hidden hidden" id="mobile-menu">
+            <div class="container mx-auto px-4 py-4 flex flex-col space-y-4 bg-gray-800 border-b border-gray-700">
+                <a href="index.html" class="font-medium text-indigo-400">Home</a>
+                <a href="resume.html" class="font-medium text-gray-300">Resume</a>
+                <a href="notes.html" class="font-medium text-gray-300">Notes</a>
             </div>
         </div>
-        <div class="right-column">
-            <div id="card">
-                <div id="chicken-soup-card" class="card"></div>
-            </div>
-            <div id="card">
-                <div id="about" class="card">
-                    <h1>欢迎来到我的个人网站</h1>
-                    <p>这里是我的线上空间，分享我的故事和作品。</p>
-                    <h2>关于我</h2>
-                    <p>我是一名充满激情的开发者，热衷于探索新技术和解决复杂问题。</p>
-                </div>
+    </nav>
+
+    <!-- Hero Section with Game -->
+    <section class="relative h-screen flex items-center justify-center">
+        <div id="game-container"></div>
+        <div class="container mx-auto px-4 text-center z-10">
+            <h1 class="text-5xl md:text-7xl font-extrabold mb-4 bg-clip-text text-transparent bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500">
+                Hello, World!
+            </h1>
+            <p class="text-xl md:text-2xl mb-8 max-w-2xl mx-auto">
+                Welcome to my personal website. Explore my work, experiences, and thoughts.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center gap-4">
+                <a href="resume.html" class="bg-indigo-600 text-white font-medium px-8 py-3 rounded-full hover:bg-indigo-700 transition-colors">
+                    View My Resume
+                </a>
+                <a href="notes.html" class="bg-gray-800 text-indigo-400 font-medium px-8 py-3 rounded-full border border-indigo-600 hover:bg-gray-700 transition-colors">
+                    Browse My Notes
+                </a>
             </div>
         </div>
     </section>
 
-    <!-- 将模式切换按钮移到这里 -->
-    <button id="dark-mode-toggle" class="floating-toggle">
-        <i class="fas fa-sun"></i>
-        <i class="fas fa-moon"></i>
-    </button>
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4 text-center">
+            <p>© 2025 Personal Website. All rights reserved.</p>
+        </div>
+    </footer>
 
-    <script src="js/script.js"></script>
-    <script src="js/calendar.js"></script>
-    <script src="js/time.js"></script>
-    <script src="js/chicken_soup.js"></script>
-</body>
-</html>
+    <script>
+        lucide.createIcons();
+
+        // Mobile menu toggle
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Knowledge Graph Background with Canvas
+        class KnowledgeGraph {
+            constructor(container) {
+                this.container = container;
+                this.canvas = document.createElement('canvas');
+                this.ctx = this.canvas.getContext('2d');
+                this.container.appendChild(this.canvas);
+                
+                this.nodes = [];
+                this.connections = [];
+                this.mouse = { x: 0, y: 0, vx: 0, vy: 0, lastX: 0, lastY: 0 };
+                
+                this.nodeCount = this.canvas.width * this.canvas.height / 100;
+                this.connectionDistance = 150;
+                this.mouseInfluenceRadius = 150;
+                this.baseNodeSize = 1;
+                
+                this.init();
+                this.animate();
+            }
+            
+            init() {
+                this.resize();
+                window.addEventListener('resize', () => this.resize());
+                
+                // Create nodes - start at center, then disperse
+                for (let i = 0; i < this.nodeCount; i++) {
+                    const originalX = Math.random() * this.canvas.width;
+                    const originalY = Math.random() * this.canvas.height;
+                    
+                    const node = {
+                        x: this.canvas.width / 2 + Math.random() * 500 - 250,
+                        y: this.canvas.height / 2 + Math.random() * 500 - 250,
+                        vx: 0,
+                        vy: 0,
+                        size: this.baseNodeSize + Math.random() * 2,
+                        originalX: originalX,
+                        originalY: originalY,
+                        targetX: originalX,
+                        targetY: originalY,
+                        speed: 0.02 + Math.random() * 0.03,
+                        maxOffset: 600 // Max distance from original position
+                    };
+                    this.nodes.push(node);
+                }
+                
+                // Create connections
+                for (let i = 0; i < this.nodes.length; i++) {
+                    for (let j = i + 1; j < this.nodes.length; j++) {
+                        const dx = this.nodes[i].x - this.nodes[j].x;
+                        const dy = this.nodes[i].y - this.nodes[j].y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        if (distance < this.connectionDistance) {
+                            this.connections.push({ from: i, to: j });
+                        }
+                    }
+                }
+                
+                // Mouse event listeners
+                window.addEventListener('mousemove', (e) => {
+                    this.mouse.x = e.clientX;
+                    this.mouse.y = e.clientY;
+                });
+            }
+            
+            resize() {
+                this.canvas.width = this.container.clientWidth;
+                this.canvas.height = this.container.clientHeight;
+            }
+            
+
+            
+            updateNodes() {
+                this.nodes.forEach(node => {
+                    // Initial dispersion from center to original position
+                    const dispersionDx = node.originalX - node.x;
+                    const dispersionDy = node.originalY - node.y;
+                    const dispersionDistance = Math.sqrt(dispersionDx * dispersionDx + dispersionDy * dispersionDy);
+                    
+                    if (dispersionDistance > 1) {
+                        // Continue dispersing to original position
+                        const dispersionSpeed = 0.1 * node.speed;
+                        node.vx += dispersionDx * dispersionSpeed;
+                        node.vy += dispersionDy * dispersionSpeed;
+                    } else {
+                        // Already at original position, start normal behavior
+                        // Calculate distance to mouse
+                        const dx = this.mouse.x - node.x;
+                        const dy = this.mouse.y - node.y;
+                        const distance = Math.sqrt(dx * dx + dy * dy);
+                        
+                        // Mouse influence - nodes move toward mouse with distance-dependent attraction
+                        const maxInfluenceRadius = this.mouseInfluenceRadius * 3;
+                        if(distance<this.mouseInfluenceRadius){
+                            node.targetX = this.mouse.x + (dx / distance) * node.maxOffset;
+                            node.targetY = this.mouse.y + (dy / distance) * node.maxOffset;
+                        }
+                        
+                        if (distance < maxInfluenceRadius) {
+                            // Calculate influence factor (inversely proportional to distance)
+                            const influence = Math.max(0, 1 - distance / maxInfluenceRadius);
+                            
+                            // Attraction speed inversely proportional to distance (closer = faster)
+                            // Use 1/distance but with a cap to prevent extreme speeds for very close nodes
+                            const baseAttractionSpeed = 0.5 * node.speed;
+                            const distanceFactor = Math.min(2, 1 / (distance + 0.1)); // +0.1 to avoid division by zero
+                            const attractionSpeed = baseAttractionSpeed * distanceFactor * influence;
+                            
+                            // Move toward mouse position with proportional influence
+                            node.vx += dx * attractionSpeed;
+                            node.vy += dy * attractionSpeed;
+                        } else {
+                            // Outside 3x influence radius, return to original position
+                            const originalDx = node.originalX - node.x;
+                            const originalDy = node.originalY - node.y;
+                            const originalDistance = Math.sqrt(originalDx * originalDx + originalDy * originalDy);
+                            
+                            if (originalDistance > 1) {
+                                // Return speed based on distance from original position
+                                const returnSpeed = 0.05 * node.speed;
+                                node.vx += originalDx * returnSpeed;
+                                node.vy += originalDy * returnSpeed;
+                            }
+                        }
+                    }
+                    
+                    // Apply velocity
+                    node.x += node.vx;
+                    node.y += node.vy;
+                    
+                    // Damping - adjust for smoother movement
+                    node.vx *= 0.8;
+                    node.vy *= 0.8;
+                    
+           // Boundary check
+                    if (node.x < 0 || node.x > this.canvas.width) node.vx *= -0.5;
+                    if (node.y < 0 || node.y > this.canvas.height) node.vy *= -0.5;
+                    
+                    node.x = Math.max(0, Math.min(this.canvas.width, node.x));
+                    node.y = Math.max(0, Math.min(this.canvas.height, node.y));
+                });
+            }
+            
+
+            
+            draw() {
+                // Clear canvas
+                this.ctx.clearRect(0, 0, this.canvas.width, this.canvas.height);
+                
+                // Draw connections
+                this.ctx.strokeStyle = 'rgba(100, 100, 100, 0.3)';
+                this.ctx.lineWidth = 0.5;
+                
+                this.connections.forEach(connection => {
+                    const node1 = this.nodes[connection.from];
+                    const node2 = this.nodes[connection.to];
+                    
+                    const dx = node1.x - node2.x;
+                    const dy = node1.y - node2.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    if (distance < this.connectionDistance) {
+                        this.ctx.beginPath();
+                        this.ctx.moveTo(node1.x, node1.y);
+                        this.ctx.lineTo(node2.x, node2.y);
+                        this.ctx.stroke();
+                    }
+                });
+                
+                // Draw nodes with ripple effect
+                this.nodes.forEach(node => {
+                    // Calculate distance to mouse for size variation
+                    const dx = this.mouse.x - node.x;
+                    const dy = this.mouse.y - node.y;
+                    const distance = Math.sqrt(dx * dx + dy * dy);
+                    
+                    let size = node.size;
+                    
+                    // Mouse influence on size
+                    if (distance < this.mouseInfluenceRadius) {
+                        const influence = 1 - distance / this.mouseInfluenceRadius;
+                        size += influence * 3;
+                    }
+                    
+                    this.ctx.beginPath();
+                    this.ctx.arc(node.x, node.y, size, 0, Math.PI * 2);
+                    this.ctx.fillStyle = 'rgba(230, 230, 230, 0.9)';
+                    this.ctx.fill();
+                });
+            }
+            
+            animate() {
+                this.updateNodes();
+                this.draw();
+                
+                requestAnimationFrame(() => this.animate());
+            }
+        }
+        
+        // Initialize the knowledge graph
+        window.addEventListener('DOMContentLoaded', () => {
+            const container = document.getElementById('game-container');
+            new KnowledgeGraph(container);
+        });
+    </script>
+
+</body></html>
