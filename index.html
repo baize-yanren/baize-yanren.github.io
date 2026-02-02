@@ -85,6 +85,149 @@
         </div>
     </section>
 
+    <!-- About Section -->
+    <section class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">About Me</h2>
+            <div class="flex flex-col md:flex-row gap-8 items-center">
+                <div class="md:w-1/3">
+                    <div class="aspect-square rounded-full overflow-hidden border-4 border-indigo-600 shadow-lg">
+                        <img src="https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=professional%20profile%20picture%20of%20a%20software%20engineer&image_size=square_hd" alt="Profile Picture" class="w-full h-full object-cover">
+                    </div>
+                </div>
+                <div class="md:w-2/3">
+                    <h3 class="text-2xl font-bold mb-4">[Your Name]</h3>
+                    <p class="text-gray-300 mb-4">[Your Professional Title]</p>
+                    <p class="text-gray-400 mb-6">
+                        [Short bio about yourself. Mention your skills, experience, and interests. Keep it concise and engaging.]
+                    </p>
+                    <div class="grid grid-cols-2 md:grid-cols-3 gap-4 mb-6">
+                        <div class="bg-gray-700 p-4 rounded-lg text-center">
+                            <i data-lucide="code" class="w-8 h-8 text-indigo-400 mx-auto mb-2"></i>
+                            <p class="font-medium">[Skill 1]</p>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg text-center">
+                            <i data-lucide="design" class="w-8 h-8 text-indigo-400 mx-auto mb-2"></i>
+                            <p class="font-medium">[Skill 2]</p>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg text-center">
+                            <i data-lucide="database" class="w-8 h-8 text-indigo-400 mx-auto mb-2"></i>
+                            <p class="font-medium">[Skill 3]</p>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg text-center">
+                            <i data-lucide="server" class="w-8 h-8 text-indigo-400 mx-auto mb-2"></i>
+                            <p class="font-medium">[Skill 4]</p>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg text-center">
+                            <i data-lucide="laptop" class="w-8 h-8 text-indigo-400 mx-auto mb-2"></i>
+                            <p class="font-medium">[Skill 5]</p>
+                        </div>
+                        <div class="bg-gray-700 p-4 rounded-lg text-center">
+                            <i data-lucide="brain" class="w-8 h-8 text-indigo-400 mx-auto mb-2"></i>
+                            <p class="font-medium">[Skill 6]</p>
+                        </div>
+                    </div>
+                    <div class="flex space-x-4">
+                        <a href="#" class="bg-gray-700 p-3 rounded-full hover:bg-indigo-600 transition-colors">
+                            <i data-lucide="github"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 p-3 rounded-full hover:bg-indigo-600 transition-colors">
+                            <i data-lucide="linkedin"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 p-3 rounded-full hover:bg-indigo-600 transition-colors">
+                            <i data-lucide="mail"></i>
+                        </a>
+                        <a href="#" class="bg-gray-700 p-3 rounded-full hover:bg-indigo-600 transition-colors">
+                            <i data-lucide="twitter"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- File Library Section -->
+    <section class="py-16">
+        <div class="container mx-auto px-4">
+            <h2 class="text-3xl md:text-4xl font-bold mb-12 text-center">File Library</h2>
+            <div class="bg-gray-800 p-6 rounded-lg shadow-lg border border-gray-700">
+                <div class="flex justify-between items-center mb-6">
+                    <h3 class="text-2xl font-bold">My Files</h3>
+                    <div class="relative">
+                        <input type="text" placeholder="Search files..." class="w-full md:w-64 pl-10 pr-4 py-2 border border-gray-600 rounded-lg focus:outline-none focus:ring-2 focus:ring-indigo-500 bg-gray-700 text-gray-100 placeholder-gray-400">
+                        <i data-lucide="search" class="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
+                    </div>
+                </div>
+                <div class="overflow-x-auto">
+                    <table class="w-full" id="file-library-table">
+                        <thead>
+                            <tr class="border-b border-gray-700">
+                                <th class="text-left py-4 px-4 font-medium text-gray-400">Name</th>
+                                <th class="text-left py-4 px-4 font-medium text-gray-400">Type</th>
+                                <th class="text-left py-4 px-4 font-medium text-gray-400">Size</th>
+                                <th class="text-left py-4 px-4 font-medium text-gray-400">Last Modified</th>
+                                <th class="text-left py-4 px-4 font-medium text-gray-400">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <!-- File library content will be dynamically inserted here -->
+                            <tr>
+                                <td colspan="5" class="py-12 text-center text-gray-400">
+                                    <i data-lucide="loader-2" class="w-12 h-12 mx-auto mb-4 animate-spin"></i>
+                                    <p>Loading file library...</p>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="mt-6 flex justify-between items-center">
+                    <p class="text-gray-400">Showing [X] of [Y] files</p>
+                    <div class="flex space-x-2">
+                        <button class="px-4 py-2 border border-gray-600 rounded-lg hover:bg-gray-700 transition-colors">
+                            <i data-lucide="chevron-left" class="w-4 h-4"></i>
+                        </button>
+                        <button class="px-4 py-2 bg-indigo-600 text-white rounded-lg hover:bg-indigo-700 transition-colors">
+                            1
+                        </button>
+                        <button class="px-4 py-2 border border-gray-600 rounded-lg hover:bg-gray-700 transition-colors">
+                            2
+                        </button>
+                        <button class="px-4 py-2 border border-gray-600 rounded-lg hover:bg-gray-700 transition-colors">
+                            3
+                        </button>
+                        <button class="px-4 py-2 border border-gray-600 rounded-lg hover:bg-gray-700 transition-colors">
+                            <i data-lucide="chevron-right" class="w-4 h-4"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="py-16 bg-gray-800">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8">
+                <div class="bg-gray-700 p-6 rounded-lg text-center">
+                    <div class="text-4xl font-bold text-indigo-400 mb-2">[Number]</div>
+                    <p class="text-gray-400">Projects</p>
+                </div>
+                <div class="bg-gray-700 p-6 rounded-lg text-center">
+                    <div class="text-4xl font-bold text-indigo-400 mb-2">[Number]</div>
+                    <p class="text-gray-400">Years Experience</p>
+                </div>
+                <div class="bg-gray-700 p-6 rounded-lg text-center">
+                    <div class="text-4xl font-bold text-indigo-400 mb-2">[Number]</div>
+                    <p class="text-gray-400">Skills</p>
+                </div>
+                <div class="bg-gray-700 p-6 rounded-lg text-center">
+                    <div class="text-4xl font-bold text-indigo-400 mb-2">[Number]</div>
+                    <p class="text-gray-400">Files</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
     <footer class="bg-gray-900 text-white py-8">
         <div class="container mx-auto px-4 text-center">
             <p>© 2025 Personal Website. All rights reserved.</p>
@@ -305,7 +448,135 @@
         window.addEventListener('DOMContentLoaded', () => {
             const container = document.getElementById('game-container');
             new KnowledgeGraph(container);
+            
+            // Load file library
+            loadFileLibrary();
         });
+
+        // Load and render file library
+        async function loadFileLibrary() {
+            try {
+                const response = await fetch('library/library.json');
+                if (!response.ok) {
+                    throw new Error('Failed to load library');
+                }
+                const library = await response.json();
+                renderFileLibrary(library);
+            } catch (error) {
+                console.error('Error loading file library:', error);
+                const tbody = document.querySelector('#file-library-table tbody');
+                tbody.innerHTML = `
+                    <tr>
+                        <td colspan="5" class="py-12 text-center text-red-400">
+                            <i data-lucide="alert-circle" class="w-12 h-12 mx-auto mb-4"></i>
+                            <p>Failed to load file library</p>
+                        </td>
+                    </tr>
+                `;
+                lucide.createIcons();
+            }
+        }
+
+        // Render file library content
+        function renderFileLibrary(library) {
+            const tbody = document.querySelector('#file-library-table tbody');
+            tbody.innerHTML = '';
+            
+            // Render folders
+            library.folders.forEach(folder => {
+                renderFolder(folder, tbody, 0);
+            });
+            
+            // Render files
+            library.files.forEach(file => {
+                renderFile(file, tbody);
+            });
+            
+            // Update file count
+            const fileCount = library.files.length;
+            const folderCount = countFolders(library.folders);
+            document.querySelector('.mt-6 p.text-gray-400').textContent = `Showing ${fileCount} files in ${folderCount} folders`;
+            
+            lucide.createIcons();
+        }
+
+        // Count total folders
+        function countFolders(folders) {
+            let count = folders.length;
+            folders.forEach(folder => {
+                if (folder.children && folder.children.length > 0) {
+                    count += countFolders(folder.children);
+                }
+            });
+            return count;
+        }
+
+        // Render folder
+        function renderFolder(folder, tbody, depth) {
+            const indent = depth * 20;
+            const tr = document.createElement('tr');
+            tr.className = 'border-b border-gray-700 hover:bg-gray-700 transition-colors';
+            tr.innerHTML = `
+                <td class="py-4 px-4">
+                    <div class="flex items-center" style="padding-left: ${indent}px;">
+                        <i data-lucide="folder" class="w-5 h-5 text-yellow-500 mr-2"></i>
+                        <span>${folder.name}</span>
+                    </div>
+                </td>
+                <td class="py-4 px-4 text-gray-400">Folder</td>
+                <td class="py-4 px-4 text-gray-400">--</td>
+                <td class="py-4 px-4 text-gray-400">--</td>
+                <td class="py-4 px-4">
+                    <a href="#" class="text-indigo-400 hover:text-indigo-300">Open</a>
+                </td>
+            `;
+            tbody.appendChild(tr);
+            
+            // Render subfolders
+            if (folder.children && folder.children.length > 0) {
+                folder.children.forEach(subfolder => {
+                    renderFolder(subfolder, tbody, depth + 1);
+                });
+            }
+        }
+
+        // Render file
+        function renderFile(file, tbody) {
+            const tr = document.createElement('tr');
+            tr.className = 'border-b border-gray-700 hover:bg-gray-700 transition-colors';
+            
+            let iconClass = 'text-gray-400';
+            let actionText = 'Download';
+            
+            switch (file.type) {
+                case 'pdf':
+                    iconClass = 'text-red-400';
+                    break;
+                case 'word':
+                    iconClass = 'text-blue-400';
+                    break;
+                case 'md':
+                    iconClass = 'text-purple-400';
+                    actionText = 'View';
+                    break;
+            }
+            
+            tr.innerHTML = `
+                <td class="py-4 px-4">
+                    <div class="flex items-center" style="padding-left: ${20}px;">
+                        <i data-lucide="file-text" class="w-5 h-5 ${iconClass} mr-2"></i>
+                        <span>${file.name}</span>
+                    </div>
+                </td>
+                <td class="py-4 px-4 text-gray-400">${file.type.toUpperCase()}</td>
+                <td class="py-4 px-4 text-gray-400">${file.size}</td>
+                <td class="py-4 px-4 text-gray-400">${file.lastModified}</td>
+                <td class="py-4 px-4">
+                    <a href="#" class="text-indigo-400 hover:text-indigo-300">${actionText}</a>
+                </td>
+            `;
+            tbody.appendChild(tr);
+        }
     </script>
 
 </body></html>

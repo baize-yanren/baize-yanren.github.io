@@ -1,0 +1,99 @@
+{
+  "name": "File Library",
+  "description": "Personal file library for storing documents and notes",
+  "folders": [
+    {
+      "id": "1",
+      "name": "Documents",
+      "path": "documents",
+      "type": "folder",
+      "children": [
+        {
+          "id": "2",
+          "name": "Resume",
+          "path": "documents/resume",
+          "type": "folder",
+          "children": []
+        },
+        {
+          "id": "3",
+          "name": "Projects",
+          "path": "documents/projects",
+          "type": "folder",
+          "children": []
+        }
+      ]
+    },
+    {
+      "id": "4",
+      "name": "Notes",
+      "path": "notes",
+      "type": "folder",
+      "children": [
+        {
+          "id": "5",
+          "name": "Markdown",
+          "path": "notes/markdown",
+          "type": "folder",
+          "children": []
+        },
+        {
+          "id": "6",
+          "name": "PDF",
+          "path": "notes/pdf",
+          "type": "folder",
+          "children": []
+        },
+        {
+          "id": "7",
+          "name": "Word",
+          "path": "notes/word",
+          "type": "folder",
+          "children": []
+        }
+      ]
+    }
+  ],
+  "files": [
+    {
+      "id": "101",
+      "name": "Resume.pdf",
+      "path": "documents/resume/Resume.pdf",
+      "type": "pdf",
+      "size": "2.5 MB",
+      "lastModified": "2025-01-01"
+    },
+    {
+      "id": "102",
+      "name": "Project Proposal.docx",
+      "path": "documents/projects/Project Proposal.docx",
+      "type": "word",
+      "size": "1.8 MB",
+      "lastModified": "2025-02-01"
+    },
+    {
+      "id": "103",
+      "name": "Getting Started with Three.js.md",
+      "path": "notes/markdown/Getting Started with Three.js.md",
+      "type": "md",
+      "size": "450 KB",
+      "lastModified": "2025-03-01"
+    },
+    {
+      "id": "104",
+      "name": "Research Paper.pdf",
+      "path": "notes/pdf/Research Paper.pdf",
+      "type": "pdf",
+      "size": "3.2 MB",
+      "lastModified": "2025-04-01"
+    },
+    {
+      "id": "105",
+      "name": "Meeting Notes.docx",
+      "path": "notes/word/Meeting Notes.docx",
+      "type": "word",
+      "size": "1.2 MB",
+      "lastModified": "2025-05-01"
+    }
+  ]
+}

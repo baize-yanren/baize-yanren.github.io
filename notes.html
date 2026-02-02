@@ -1,47 +1,78 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Notes</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script src="https://cdn.jsdelivr.net/npm/lucide@0.544.0/dist/umd/lucide.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/core.min.js"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: #121212;
-            color: #e0e0e0;
-        }
-        .nav-link {
-            position: relative;
-            transition: color 0.3s;
-        }
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -4px;
-            left: 0;
-            background-color: #6366f1;
-            transition: width 0.3s;
-        }
-        .nav-link:hover::after, .nav-link.active::after {
-            width: 100%;
-        }
-        .note-card {
-            transition: transform 0.3s, box-shadow 0.3s;
-        }
-        .note-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
-        }
-    </style>
-</head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Notes</title>
+        <script src="https://cdn.tailwindcss.com"></script>
+        <script src="https://cdn.jsdelivr.net/npm/lucide@0.544.0/dist/umd/lucide.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/marked@11.1.1/marked.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/lib/core.min.js"></script>
+        <script src="https://cdn.jsdelivr.net/npm/mammoth@1.6.0/mammoth.browser.min.js"></script>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.9.0/styles/github-dark.min.css">
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+            body {
+                font-family: 'Inter', sans-serif;
+                background-color: #121212;
+                color: #e0e0e0;
+            }
+            .nav-link {
+                position: relative;
+                transition: color 0.3s;
+            }
+            .nav-link::after {
+                content: '';
+                position: absolute;
+                width: 0;
+                height: 2px;
+                bottom: -4px;
+                left: 0;
+                background-color: #6366f1;
+                transition: width 0.3s;
+            }
+            .nav-link:hover::after, .nav-link.active::after {
+                width: 100%;
+            }
+            .note-card {
+                transition: transform 0.3s, box-shadow 0.3s;
+            }
+            .note-card:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3), 0 4px 6px -2px rgba(0, 0, 0, 0.2);
+            }
+            .file-icon {
+                display: inline-flex;
+                align-items: center;
+                justify-content: center;
+                width: 24px;
+                height: 24px;
+                border-radius: 4px;
+                margin-right: 8px;
+            }
+            .pdf-icon {
+                background-color: #e74c3c;
+            }
+            .word-icon {
+                background-color: #3498db;
+            }
+            .md-icon {
+                background-color: #9b59b6;
+            }
+            .pdf-viewer {
+                width: 100%;
+                height: 70vh;
+                border: none;
+                border-radius: 8px;
+            }
+            .word-viewer {
+                border: 1px solid #374151;
+                border-radius: 8px;
+                padding: 20px;
+                background-color: #1f2937;
+            }
+        </style>
+    </head>
 <body class="bg-gray-900 text-gray-100">
     <!-- Navigation -->
     <nav class="fixed top-0 w-full bg-gray-900/80 backdrop-blur-md z-50 shadow-sm border-b border-gray-700">
@@ -121,12 +152,13 @@
             mobileMenu.classList.toggle('hidden');
         });
 
-        // Mock Markdown Notes Data
+        // Mock Notes Data with different file formats
         const notes = [
             {
                 id: 1,
                 title: 'Getting Started with Three.js',
                 date: '2025-10-15',
+                format: 'md',
                 content: `
 # Getting Started with Three.js
 
@@ -205,8 +237,23 @@ This is just a basic introduction to Three.js. The library is capable of creatin
             },
             {
                 id: 2,
-                title: 'Advanced Tailwind CSS Techniques',
+                title: 'Project Proposal',
                 date: '2025-09-28',
+                format: 'word',
+                content: '<h1>Project Proposal</h1><h2>Introduction</h2><p>This document outlines the proposal for our upcoming project. It includes project objectives, timeline, and resource requirements.</p><h2>Project Objectives</h2><ul><li>Develop a new feature for our product</li><li>Improve user experience</li><li>Increase customer satisfaction</li></ul><h2>Timeline</h2><p>The project is expected to take 3 months to complete, with the following milestones:</p><ul><li>Month 1: Planning and design</li><li>Month 2: Development</li><li>Month 3: Testing and deployment</li></ul><h2>Resource Requirements</h2><p>We will need the following resources:</p><ul><li>2 developers</li><li>1 designer</li><li>1 project manager</li></ul>'
+            },
+            {
+                id: 3,
+                title: 'Research Paper',
+                date: '2025-08-10',
+                format: 'pdf',
+                content: 'https://www.w3.org/WAI/ER/tests/xhtml/testfiles/resources/pdf/dummy.pdf' // Sample PDF URL
+            },
+            {
+                id: 4,
+                title: 'Advanced Tailwind CSS Techniques',
+                date: '2025-07-05',
+                format: 'md',
                 content: `
 # Advanced Tailwind CSS Techniques
 
@@ -285,269 +332,31 @@ These are just a few of the advanced techniques you can use with Tailwind CSS. T
                 `
             },
             {
-                id: 3,
-                title: 'The Future of AI in Web Development',
-                date: '2025-08-10',
-                content: `
-# The Future of AI in Web Development
-
-## Introduction
-
-Artificial Intelligence (AI) is rapidly transforming various industries, and web development is no exception. In this note, I'll explore some of the ways AI is shaping the future of web development.
-
-## AI-Powered Design Tools
-
-AI is revolutionizing the design phase of web development. Tools like Adobe Sensei and Figma's AI features can generate design suggestions, automate repetitive tasks, and even predict user behavior.
-
-## Intelligent Code Generation
-
-AI-powered code generation tools, such as GitHub Copilot and OpenAI's Codex, are becoming increasingly sophisticated. These tools can:
-
-- Generate boilerplate code
-- Complete function implementations
-- Suggest optimizations
-- Translate code between programming languages
-
-## Personalized User Experiences
-
-AI enables websites to deliver highly personalized experiences to users. By analyzing user behavior and preferences, AI algorithms can:
-
-- Customize content recommendations
-- Adjust the layout and design of a website
-- Provide personalized product suggestions
-- Optimize the user journey
-
-## Automated Testing and Deployment
-
-AI is also improving the testing and deployment phases of web development. AI-powered tools can:
-
-- Generate test cases
-- Identify potential bugs and vulnerabilities
-- Predict the impact of code changes
-- Automate the deployment process
-
-## Conclusion
-
-The integration of AI into web development is still in its early stages, but the potential is enormous. As AI technology continues to evolve, we can expect to see even more innovative applications in the field of web development.
-                `
-            },
-            {
-                id: 4,
-                title: 'A Deep Dive into JavaScript Promises',
-                date: '2025-07-05',
-                content: `
-# A Deep Dive into JavaScript Promises
-
-## Introduction
-
-Promises are a fundamental concept in modern JavaScript, providing a way to handle asynchronous operations. In this note, we'll take a deep dive into promises, exploring their syntax, methods, and common patterns.
-
-## What is a Promise?
-
-A Promise is an object representing the eventual completion or failure of an asynchronous operation. A Promise can be in one of three states:
-
-- \`pending\`: The initial state, neither fulfilled nor rejected.
-- \`fulfilled\`: The operation completed successfully.
-- \`rejected\`: The operation failed.
-
-## Creating a Promise
-
-You can create a new Promise using the \`Promise\` constructor.
-
-\`\`\`javascript
-const promise = new Promise((resolve, reject) => {
-  // Asynchronous operation
-  setTimeout(() => {
-    const success = true;
-    if (success) {
-      resolve('Operation was successful!');
-    } else {
-      reject('Operation failed!');
-    }
-  }, 1000);
-});
-\`\`\`
-
-## Consuming a Promise
-
-You can consume a promise using the \`then()\`, \`catch()\`, and \`finally()\` methods.
-
-\`\`\`javascript
-promise
-  .then((result) => {
-    console.log(result); // 'Operation was successful!'
-  })
-  .catch((error) => {
-    console.error(error); // 'Operation failed!'
-  })
-  .finally(() => {
-    console.log('This will run regardless of the outcome.');
-  });
-\`\`\`
-
-## Promise Methods
-
-Promise provides several static methods for working with promises.
-
-### Promise.all()
-
-Resolves when all of the promises in the iterable argument have resolved, or rejects if any of them reject.
-
-\`\`\`javascript
-const promise1 = Promise.resolve(3);
-const promise2 = 42;
-const promise3 = new Promise((resolve, reject) => {
-  setTimeout(resolve, 100, 'foo');
-});
-
-Promise.all([promise1, promise2, promise3]).then((values) => {
-  console.log(values); // [3, 42, 'foo']
-});
-\`\`\`
-
-### Promise.race()
-
-Resolves or rejects as soon as one of the promises in the iterable resolves or rejects, with the value or reason from that promise.
-
-\`\`\`javascript
-const promise1 = new Promise((resolve, reject) => {
-  setTimeout(resolve, 500, 'one');
-});
-
-const promise2 = new Promise((resolve, reject) => {
-  setTimeout(resolve, 100, 'two');
-});
-
-Promise.race([promise1, promise2]).then((value) => {
-  console.log(value); // 'two'
-  // Both promises resolve, but promise2 is faster
-});
-\`\`\`
-
-## Async/Await
-
-The \`async\` and \`await\` keywords provide a more concise and readable way to work with promises.
-
-\`\`\`javascript
-async function asyncFunction() {
-  try {
-    const result = await promise;
-    console.log(result);
-  } catch (error) {
-    console.error(error);
-  } finally {
-    console.log('This will run regardless of the outcome.');
-  }
-}
-
-asyncFunction();
-\`\`\`
-
-## Conclusion
-
-Promises are a powerful feature of JavaScript that make it easier to work with asynchronous operations. By understanding how promises work and how to use them effectively, you can write cleaner, more maintainable code.
-                `
-            },
-            {
                 id: 5,
-                title: 'Building Accessible Web Applications',
+                title: 'Annual Report',
                 date: '2025-06-20',
-                content: `
-# Building Accessible Web Applications
-
-## Introduction
-
-Web accessibility is the practice of ensuring that websites and web applications are usable by people with disabilities. In this note, we'll discuss some key principles and techniques for building accessible web applications.
-
-## Why Accessibility Matters
-
-Accessible websites benefit everyone, not just people with disabilities. They are often faster, more usable, and rank higher in search engines. Moreover, in many countries, web accessibility is a legal requirement.
-
-## Key Principles of Accessibility
-
-The Web Content Accessibility Guidelines (WCAG) outline four key principles of accessibility:
-
-1. **Perceivable**: Information and user interface components must be presentable to users in ways they can perceive.
-2. **Operable**: User interface components and navigation must be operable.
-3. **Understandable**: Information and the operation of user interface must be understandable.
-4. **Robust**: Content must be robust enough that it can be interpreted by a wide variety of user agents, including assistive technologies.
-
-## Practical Tips for Accessible Design
-
-### Semantic HTML
-
-Use semantic HTML elements to provide meaning to your content.
-
-\`\`\`html
-<!-- Good -->
-<nav aria-label="Main navigation">
-  <ul>
-    <li><a href="/">Home</a></li>
-    <li><a href="/about">About</a></li>
-  </ul>
-</nav>
-
-<!-- Avoid -->
-<div class="nav">
-  <div class="nav-item"><a href="/">Home</a></div>
-  <div class="nav-item"><a href="/about">About</a></div>
-</div>
-\`\`\`
-
-### ARIA Roles and Attributes
-
-Use ARIA roles and attributes to provide additional information to assistive technologies.
-
-\`\`\`html
-<div role="tablist" aria-label="Tabs">
-  <button role="tab" aria-selected="true" aria-controls="panel1" id="tab1">Tab 1</button>
-  <button role="tab" aria-selected="false" aria-controls="panel2" id="tab2">Tab 2</button>
-</div>
-<div id="panel1" role="tabpanel" aria-labelledby="tab1">Content for Tab 1</div>
-<div id="panel2" role="tabpanel" aria-labelledby="tab2" hidden>Content for Tab 2</div>
-\`\`\`
-
-### Keyboard Navigation
-
-Ensure that all interactive elements are accessible via keyboard.
-
-\`\`\`css
-button:focus {
-  outline: 2px solid #4F46E5;
-  outline-offset: 2px;
-}
-\`\`\`
-
-### Color Contrast
-
-Ensure that text has sufficient contrast against its background.
-
-\`\`\`css
-.paragraph {
-  color: #333333; /* Dark gray text */
-  background-color: #FFFFFF; /* White background */
-  /* This provides a contrast ratio of 12:1, which exceeds WCAG AAA requirements */
-}
-\`\`\`
-
-## Testing for Accessibility
-
-There are several tools and techniques you can use to test the accessibility of your web application:
-
-- **Automated testing**: Tools like Axe, WAVE, and Lighthouse can identify common accessibility issues.
-- **Manual testing**: Navigate your website using only a keyboard and try using a screen reader.
-- **User testing**: If possible, test your website with people who have disabilities.
-
-## Conclusion
-
-Building accessible web applications is not just a legal requirement or a matter of good practice—it's about creating a web that works for everyone. By following the principles and techniques outlined in this note, you can create web applications that are accessible to all users.
-                `
+                format: 'pdf',
+                content: 'https://www.adobe.com/support/products/en/acrobat/pdfs/pdf_open_parameters.pdf' // Sample PDF URL
             }
         ];
 
         const notesList = document.getElementById('notes-list');
         const noteContent = document.getElementById('note-content');
         const searchInput = document.getElementById('search-input');
+
+        // Get file icon based on format
+        function getFileIcon(format) {
+            switch (format) {
+                case 'pdf':
+                    return '<span class="file-icon pdf-icon"><i data-lucide="file-text" class="w-4 h-4 text-white"></i></span>';
+                case 'word':
+                    return '<span class="file-icon word-icon"><i data-lucide="file-text" class="w-4 h-4 text-white"></i></span>';
+                case 'md':
+                    return '<span class="file-icon md-icon"><i data-lucide="file-text" class="w-4 h-4 text-white"></i></span>';
+                default:
+                    return '<span class="file-icon"><i data-lucide="file" class="w-4 h-4 text-gray-400"></i></span>';
+            }
+        }
 
         // Render the notes list
         function renderNotesList(filteredNotes = notes) {
@@ -557,8 +366,11 @@ Building accessible web applications is not just a legal requirement or a matter
                 li.className = 'note-card p-4 rounded-lg hover:bg-gray-700 cursor-pointer border border-gray-700 bg-gray-800';
                 li.dataset.noteId = note.id;
                 li.innerHTML = `
-                    <h3 class="font-bold text-lg mb-1">${note.title}</h3>
-                    <p class="text-sm text-gray-400">${note.date}</p>
+                    <div class="flex items-center mb-1">
+                        ${getFileIcon(note.format)}
+                        <h3 class="font-bold text-lg">${note.title}</h3>
+                    </div>
+                    <p class="text-sm text-gray-400 pl-9">${note.date}</p>
                 `;
                 notesList.appendChild(li);
             });
@@ -575,11 +387,11 @@ Building accessible web applications is not just a legal requirement or a matter
             });
         }
 
-        // Render the selected note's content
+        // Render the selected note's content based on format
         function renderNoteContent(noteId) {
             const note = notes.find(n => n.id === noteId);
             if (note) {
-                // Set up marked options
+                // Set up marked options for MD files
                 marked.setOptions({
                     highlight: function(code, lang) {
                         const language = hljs.getLanguage(lang) ? lang : 'plaintext';
@@ -590,17 +402,58 @@ Building accessible web applications is not just a legal requirement or a matter
                     gfm: true
                 });
 
-                // Convert Markdown to HTML
-                const html = marked.parse(note.content);
-                noteContent.innerHTML = `
-                    <article class="prose max-w-none">
-                        <header class="mb-8 border-b border-gray-700 pb-4">
-                            <h1 class="text-4xl font-bold mb-2">${note.title}</h1>
-                            <p class="text-gray-400">Published on ${note.date}</p>
-                        </header>
-                        ${html}
-                    </article>
-                `;
+                switch (note.format) {
+                    case 'md':
+                        // Convert Markdown to HTML
+                        const html = marked.parse(note.content);
+                        noteContent.innerHTML = `
+                            <article class="prose max-w-none">
+                                <header class="mb-8 border-b border-gray-700 pb-4">
+                                    <h1 class="text-4xl font-bold mb-2">${note.title}</h1>
+                                    <p class="text-gray-400">Published on ${note.date}</p>
+                                </header>
+                                ${html}
+                            </article>
+                        `;
+                        break;
+                    case 'pdf':
+                        noteContent.innerHTML = `
+                            <div>
+                                <header class="mb-6 border-b border-gray-700 pb-4">
+                                    <h1 class="text-4xl font-bold mb-2">${note.title}</h1>
+                                    <p class="text-gray-400">Published on ${note.date}</p>
+                                </header>
+                                <iframe src="${note.content}" class="pdf-viewer"></iframe>
+                                <div class="mt-4 text-center">
+                                    <a href="${note.content}" target="_blank" class="text-indigo-400 hover:text-indigo-300 inline-flex items-center">
+                                        <i data-lucide="external-link" class="w-4 h-4 mr-1"></i> Open in new tab
+                                    </a>
+                                </div>
+                            </div>
+                        `;
+                        break;
+                    case 'word':
+                        noteContent.innerHTML = `
+                            <div>
+                                <header class="mb-6 border-b border-gray-700 pb-4">
+                                    <h1 class="text-4xl font-bold mb-2">${note.title}</h1>
+                                    <p class="text-gray-400">Published on ${note.date}</p>
+                                </header>
+                                <div class="word-viewer">
+                                    ${note.content}
+                                </div>
+                            </div>
+                        `;
+                        break;
+                    default:
+                        noteContent.innerHTML = `
+                            <div class="text-center h-full flex flex-col items-center justify-center text-gray-400">
+                                <i data-lucide="file" class="w-24 h-24 mb-4"></i>
+                                <h3 class="text-2xl font-bold mb-2">Unsupported File Format</h3>
+                                <p>Sorry, we don't support viewing this file format yet.</p>
+                            </div>
+                        `;
+                }
                 // Re-render icons in case there are any in the note content
                 lucide.createIcons();
             }
@@ -614,7 +467,7 @@ Building accessible web applications is not just a legal requirement or a matter
             const searchTerm = e.target.value.toLowerCase();
             const filteredNotes = notes.filter(note => 
                 note.title.toLowerCase().includes(searchTerm) || 
-                note.content.toLowerCase().includes(searchTerm)
+                (note.content && note.content.toLowerCase().includes(searchTerm))
             );
             renderNotesList(filteredNotes);
         });
