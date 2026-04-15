@@ -4,7 +4,7 @@
 
 #### 联系方式
 
-Email: wangyuren5101[at]foxmail.com
+Email: wangyuren5101@foxmail.com
 
 #### 教育经历
 2020-2024   国防科技大学    计算机科学与技术（人工智能与大数据方向）
