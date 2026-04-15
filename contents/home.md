@@ -2,16 +2,15 @@
 
 <!-- [![senli1073](https://img.shields.io/badge/senli1073-github-blue?logo=github)](https://github.com/senli1073) -->
 
-He is currently a Fellow in the Department of Earth and Planetary Sciences (EPS) at Harvard University.
+#### 联系方式
 
-#### Contact
+Email: wangyuren5101[at]foxmail.com
 
-Email: user[at]fas.harvard.edu
+#### 教育经历
+2020-2024   国防科技大学    计算机科学与技术（人工智能与大数据方向）
+主修课程：
+机器学习、自然语言处理、数字图像处理、计算机图形学、数据挖掘、数据库系统、软件工程
 
-#### Education
-M.E., Computer Science and Technology, China University of Mining and Technology, 2022—2025.\
-B.E., Data Science and Big Data Technology, China University of Mining and Technology, 2018—2022.
+<!-- #### Research Interests -->
 
-#### Research Interests
-Machine Learning for Seismology; Foundation Model; Observational Seismology; Microseismic Monitoring
 
