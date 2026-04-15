@@ -54,6 +54,16 @@ section .main-body{
     line-height: 2.4rem;
 }
 
+/* Markdown content font settings */
+[id$="-md"] {
+    font-family: "Microsoft YaHei", "微软雅黑", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+
+/* Ensure code blocks use monospace font */
+[id$="-md"] pre, [id$="-md"] code {
+    font-family: var(--bs-font-monospace);
+}
+
 
 .bg-gradient-primary-to-secondary-light {
     background: linear-gradient(45deg, #fcfcfc, #ffffff) !important;
