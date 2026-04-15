@@ -1,12 +1,8 @@
 
-- Outstanding Graduate Award (CUMT), 2025.
+- 多级模型火箭发射与载荷回收竞赛二等奖
 
-- National Scholarship for Graduate Students (Ministry of Education, China), 2024.
+- “泰迪杯”数据挖掘竞赛全国奖
 
-- First-Prize Graduate Academic Scholarship (CUMT), 2023 & 2024.
+- 国防科技大学尚武杯武术交流赛一等奖
 
-- Outstanding Undergraduate Thesis Award (Jiangsu, China), 2022.
-
-- First-Prize Corporate Scholarship (CUMT), 2020.
-
-- First-Prize Undergraduate Academic Scholarship (CUMT), 2019.
+- 在校期间所在学员队因学习成绩优异荣获集体三等功
